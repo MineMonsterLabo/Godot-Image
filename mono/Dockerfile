@@ -7,6 +7,6 @@ COPY mono-windows/ /opt/mono-windows
 RUN chmod -R 0777 /opt/mono-windows
 # RUN chgrp -R 1000:1000 /opt/mono-windows
 
-USER root
+# USER root
 
 # RUN chmod -R 0777 /var/lib/alternatives
