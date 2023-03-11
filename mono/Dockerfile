@@ -9,6 +9,6 @@ RUN chmod -R 0777 /opt/mono-windows
 
 USER root
 RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 90
-RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 90
+RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 90
 
 # RUN chmod -R 0777 /var/lib/alternatives
