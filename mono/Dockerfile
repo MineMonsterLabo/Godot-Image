@@ -13,5 +13,6 @@ RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-min
 
 RUN cp /usr/bin/ar bin/x86_64-w64-mingw32-gcc-ar
 RUN cp /usr/bin/ld bin/x86_64-w64-mingw32-gcc-ld
+RUN cp /usr/bin/ranlib bin/x86_64-w64-mingw32-gcc-ranlib
 
 # RUN chmod -R 0777 /var/lib/alternatives
