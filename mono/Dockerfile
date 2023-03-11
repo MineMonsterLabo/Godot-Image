@@ -11,4 +11,6 @@ USER root
 RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 90
 RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 90
 
+RUN cp /mingw64/bin/ar.exe /mingw64/bin/x86_64-w64-mingw32-ar.exe
+
 # RUN chmod -R 0777 /var/lib/alternatives
