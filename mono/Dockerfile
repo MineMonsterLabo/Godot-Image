@@ -7,6 +7,8 @@ COPY mono-windows/ /opt/mono-windows
 RUN chmod -R 0777 /opt/mono-windows
 # RUN chgrp -R 1000:1000 /opt/mono-windows
 
-# USER root
+USER root
+RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 90
+RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 90
 
 # RUN chmod -R 0777 /var/lib/alternatives
