@@ -5,4 +5,4 @@ RUN apt install -y pkg-config mingw-w64 build-essential scons pkg-config libx11-
 
 COPY mono-windows/ /opt/mono-windows
 RUN chmod -R 0777 /opt/mono-windows
-RUN chgrp -R 1000:1000 /opt/mono-windows
+# RUN chgrp -R 1000:1000 /opt/mono-windows
