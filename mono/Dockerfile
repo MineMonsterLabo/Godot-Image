@@ -28,6 +28,30 @@ RUN if [ -z "${mono_version}" ]; then echo -e "\n\nargument mono-version is mand
     dnf -y install --setopt=install_weak_deps=False \
       mingw32-gcc mingw32-gcc-c++ mingw32-winpthreads-static mingw64-gcc mingw64-gcc-c++ mingw64-winpthreads-static
 
+RUN if [ -z "${mono_version}" ]; then echo -e "\n\nargument mono-version is mandatory!\n\n"; exit 1; fi && \
+    dnf -y install --setopt=install_weak_deps=False \
+      libxcrypt-compat yasm && \
+    curl -LO https://downloads.tuxfamily.org/godotengine/toolchains/linux/2021-02-11/x86_64-godot-linux-gnu_sdk-buildroot.tar.bz2 && \
+    tar xf x86_64-godot-linux-gnu_sdk-buildroot.tar.bz2 && \
+    rm -f x86_64-godot-linux-gnu_sdk-buildroot.tar.bz2 && \
+    cd x86_64-godot-linux-gnu_sdk-buildroot && \
+    ./relocate-sdk.sh && \
+    rm -f bin/{aclocal*,auto*,libtool*,m4} && \
+    cd /root && \
+    curl -LO https://downloads.tuxfamily.org/godotengine/toolchains/linux/2021-02-11/arm-godot-linux-gnueabihf_sdk-buildroot.tar.bz2 && \
+    tar xf arm-godot-linux-gnueabihf_sdk-buildroot.tar.bz2 && \
+    rm -f arm-godot-linux-gnueabihf_sdk-buildroot.tar.bz2 && \
+    cd arm-godot-linux-gnueabihf_sdk-buildroot && \
+    ./relocate-sdk.sh && \
+    rm -f bin/{aclocal*,auto*,libtool*,m4} && \
+    cd /root && \
+    curl -LO https://downloads.tuxfamily.org/godotengine/toolchains/linux/2021-02-11/i686-godot-linux-gnu_sdk-buildroot.tar.bz2 && \
+    tar xf i686-godot-linux-gnu_sdk-buildroot.tar.bz2 && \
+    rm -f i686-godot-linux-gnu_sdk-buildroot.tar.bz2 && \
+    cd i686-godot-linux-gnu_sdk-buildroot && \
+    ./relocate-sdk.sh && \
+    rm -f bin/{aclocal*,auto*,libtool*,m4}
+
 ####
 # Old
 ####
