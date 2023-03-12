@@ -17,6 +17,6 @@ RUN cp /usr/bin/ranlib bin/x86_64-w64-mingw32-gcc-ranlib
 
 RUN mkdir /.config
 RUN mkdir /.config/NuGet
-RUN touch /.config/NuGet/NuGet.Config
+COPY NuGet.Config /.config/NuGet/NuGet.Config
 
 # RUN chmod -R 0777 /var/lib/alternatives
