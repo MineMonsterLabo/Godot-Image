@@ -20,4 +20,7 @@ RUN mkdir /.config/NuGet
 COPY NuGet.Config /.config/NuGet/NuGet.Config
 RUN chmod -R 0777 /.config
 
+RUN mkdir /.nuget
+RUN chmod -R 0777 /.nuget
+
 # RUN chmod -R 0777 /var/lib/alternatives
