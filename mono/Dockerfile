@@ -8,6 +8,23 @@ RUN dnf -y install --setopt=install_weak_deps=False \
 
 ARG mono_version=mono-6.12.0.182
 
+RUN files_root=$(pwd)/files && \
+    mono_root="${files_root}/${mono_version}" && \
+    if [ ! -e ${mono_root} ]; then \
+        git clone -b ${mono_version} --single-branch --progress --depth 1 https://github.com/mono/mono ${mono_root} \
+        pushd ${mono_root} \
+        # Download all submodules, up to 6 at a time
+        git submodule update --init --recursive --recommend-shallow -j 6 --progress \
+        # Set up godot-mono-builds in tree
+        git clone --progress https://github.com/godotengine/godot-mono-builds \
+        pushd godot-mono-builds \
+        git checkout 8767196960fb884ae95f337ee10cb131ae720086 \
+        export MONO_SOURCE_ROOT=${mono_root} \
+        python3 patch_mono.py \
+        popd \
+        popd \
+fi
+
 RUN if [ -z "${mono_version}" ]; then echo -e "\n\nargument mono-version is mandatory!\n\n"; exit 1; fi && \
     dnf -y install --setopt=install_weak_deps=False \
       autoconf automake cmake gcc gcc-c++ gettext libtool perl python-unversioned-command && \
