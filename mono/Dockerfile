@@ -51,15 +51,15 @@ RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-min
 # RUN cp /usr/bin/ld bin/x86_64-w64-mingw32-gcc-ld
 # RUN cp /usr/bin/ranlib bin/x86_64-w64-mingw32-gcc-ranlib
 
-# RUN mkdir /.config
-# RUN mkdir /.config/NuGet
-# COPY NuGet.Config /.config/NuGet/NuGet.Config
-# RUN chmod -R 0777 /.config
+RUN mkdir /.config
+RUN mkdir /.config/NuGet
+COPY NuGet.Config /.config/NuGet/NuGet.Config
+RUN chmod -R 0777 /.config
 
-# RUN mkdir /.nuget
-# RUN chmod -R 0777 /.nuget
+RUN mkdir /.nuget
+RUN chmod -R 0777 /.nuget
 
-# RUN mkdir /.local
-# RUN chmod -R 0777 /.local
+RUN mkdir /.local
+RUN chmod -R 0777 /.local
 
 # RUN chmod -R 0777 /var/lib/alternatives
