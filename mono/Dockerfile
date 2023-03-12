@@ -44,8 +44,8 @@ RUN chmod -R 0777 /opt/mono-windows
 # # RUN chgrp -R 1000:1000 /opt/mono-windows
 
 USER root
-# RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 90
-# RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 90
+RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 90
+RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 90
 
 # RUN cp /usr/bin/ar bin/x86_64-w64-mingw32-gcc-ar
 # RUN cp /usr/bin/ld bin/x86_64-w64-mingw32-gcc-ld
