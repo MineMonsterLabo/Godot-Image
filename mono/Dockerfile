@@ -23,4 +23,7 @@ RUN chmod -R 0777 /.config
 RUN mkdir /.nuget
 RUN chmod -R 0777 /.nuget
 
+RUN mkdir /.local
+RUN chmod -R 0777 /.local
+
 # RUN chmod -R 0777 /var/lib/alternatives
