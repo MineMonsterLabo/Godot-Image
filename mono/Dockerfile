@@ -37,7 +37,8 @@ RUN git clone https://github.com/emscripten-core/emsdk.git && \
     git pull && \
     ./emsdk install sdk-1.39.20-64bit && \
     ./emsdk activate sdk-1.39.20-64bit && \
-    source ./emsdk_env.sh
+    source ./emsdk_env.sh && \
+    echo ${PATH}
 
 RUN mkdir /.config && \
     mkdir /.config/NuGet
