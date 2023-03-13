@@ -32,7 +32,7 @@ RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-min
     update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 90
 
 # install web build tool
-RUN cd opt && git clone https://github.com/emscripten-core/emsdk.git && \
+RUN cd /opt && git clone https://github.com/emscripten-core/emsdk.git && \
     cd emsdk && \
     git pull && \
     ./emsdk install sdk-1.39.20-64bit && \
