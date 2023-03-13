@@ -28,8 +28,9 @@ RUN dnf -y install --setopt=install_weak_deps=False \
 RUN git clone https://github.com/emscripten-core/emsdk.git && \
     cd emsdk && \
     git pull && \
-    ./emsdk install latest && \
-    ./emsdk activate latest --global
+    ./emsdk install sdk-1.39.20-64bit && \
+    ./emsdk activate sdk-1.39.20-64bit && \
+    source ./emsdk_env.sh
 
 COPY mono-windows/ /opt/mono-windows
 RUN chmod -R 0777 /opt/mono-windows
