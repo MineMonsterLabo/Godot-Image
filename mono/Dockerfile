@@ -4,7 +4,7 @@ WORKDIR /root
 
 # install base
 RUN dnf -y install --setopt=install_weak_deps=False \
-      bash bzip2 curl file findutils git make nano patch pkgconfig python3-pip unzip which xz cmake && \
+      bash bzip2 curl file findutils git make nano patch pkgconfig python3-pip unzip which xz && \
     pip install scons==4.3.0
 
 # install linux build tool
@@ -19,7 +19,9 @@ RUN dnf -y install --setopt=install_weak_deps=False \
       mingw32-gcc mingw32-gcc-c++ mingw32-winpthreads-static mingw64-gcc mingw64-gcc-c++ mingw64-winpthreads-static
       
 # install mono
-RUN curl -O "https://download.mono-project.com/sources/mono/mono-6.12.0.182.tar.xz" && \
+RUN dnf -y install --setopt=install_weak_deps=False \
+      autoconf libtool automake cmake gettext && \
+    curl -O "https://download.mono-project.com/sources/mono/mono-6.12.0.182.tar.xz" && \
     PREFIX=/opt/mono && \
     VERSION=6.12.0.182 && \
     tar xvf mono-$VERSION.tar.xz && \
