@@ -8,10 +8,17 @@ RUN dnf -y install --setopt=install_weak_deps=False \
     pip install scons==4.3.0
 
 # install mono
-RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" && \
-    su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo' && \
-    dnf -y update && \
-    dnf -y install mono-complete
+RUN PREFIX=/opt/mono && \
+    VERSION=6.12.0.182 && \
+    tar xvf mono-$VERSION.tar.xz && \
+    cd mono-$VERSION && \
+    ./configure --prefix=$PREFIX && \
+    make && \
+    make install
+# RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" && \
+#     su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo' && \
+#     dnf -y update && \
+#     dnf -y install mono-complete
 
 # install linux build tool
 RUN dnf -y install --setopt=install_weak_deps=False \
