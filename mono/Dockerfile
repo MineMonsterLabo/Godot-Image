@@ -19,7 +19,8 @@ RUN dnf -y install --setopt=install_weak_deps=False \
       mingw32-gcc mingw32-gcc-c++ mingw32-winpthreads-static mingw64-gcc mingw64-gcc-c++ mingw64-winpthreads-static
       
 # install mono
-RUN PREFIX=/opt/mono && \
+RUN curl "https://download.mono-project.com/sources/mono/mono-6.12.0.182.tar.xz" | tee "mono-6.12.0.182.tar.xz" && \
+    PREFIX=/opt/mono && \
     VERSION=6.12.0.182 && \
     tar xvf mono-$VERSION.tar.xz && \
     cd mono-$VERSION && \
