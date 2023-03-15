@@ -30,8 +30,7 @@ RUN dnf -y install --setopt=install_weak_deps=False \
     export MONO_SOURCE_ROOT=/root/mono && \
     git clone -b 'mono-6.12.0.182' --single-branch --progress --depth 1 'https://github.com/mono/mono' && \
     git submodule update --init --recursive --recommend-shallow -j 6 --progress && \
-    PREFIX=/opt/mono && \
-    cd mono && \
+    export PREFIX=/opt/mono && \
     git clone --progress https://github.com/godotengine/godot-mono-builds && \
     cd godot-mono-builds && \
     git checkout 8767196960fb884ae95f337ee10cb131ae720086 && \
