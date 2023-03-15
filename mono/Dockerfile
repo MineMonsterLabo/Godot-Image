@@ -27,14 +27,20 @@ RUN rpm -ivh --nodeps && \
 
 RUN dnf -y install --setopt=install_weak_deps=False \
       autoconf libtool automake cmake gettext && \
-    curl -O "https://download.mono-project.com/sources/mono/mono-6.12.0.182.tar.xz" && \
+    git clone -b '6.12.0.182' --single-branch --progress --depth 1 'https://github.com/mono/mono' && \
+    git submodule update --init --recursive --recommend-shallow -j 6 --progress && \
     PREFIX=/opt/mono && \
-    VERSION=6.12.0.182 && \
-    tar xvf mono-$VERSION.tar.xz && \
-    cd mono-$VERSION && \
-    ./configure --prefix=$PREFIX && \
-    make -j6 && \
-    make install
+    cd mono && \
+    git clone --progress https://github.com/godotengine/godot-mono-builds && \
+    cd godot-mono-builds && \
+    git checkout 8767196960fb884ae95f337ee10cb131ae720086 && \
+    export MONO_SOURCE_ROOT=${mono_root} && \
+    python3 patch_mono.py && \
+    python3 linux.py configure --target=x86_64 && \
+    python3 linux.py make --target=x86_64 && \
+    python3 patch_emscripten.py && \
+    python3 wasm.py configure --target=runtime && \
+    python3 wasm.py make --target=runtime
 # RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" && \
 #     su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo' && \
 #     dnf -y update && \
