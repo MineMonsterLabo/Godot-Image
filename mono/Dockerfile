@@ -25,6 +25,15 @@ RUN rpm -ivh --nodeps \
       https://download.mono-project.com/repo/centos8-preview/m/msbuild-libhostfxr/msbuild-libhostfxr-3.0.0.2019.04.16.02.13-0.xamarin.4.epel8.x86_64.rpm \
       https://download.mono-project.com/repo/centos8-preview/n/nuget/nuget-5.6.0.6489.bin-0.xamarin.1.epel8.noarch.rpm
 
+# install web build tool
+RUN cd /opt && git clone https://github.com/emscripten-core/emsdk.git && \
+    cd emsdk && \
+    git pull && \
+    ./emsdk install sdk-1.39.20-64bit && \
+    ./emsdk activate sdk-1.39.20-64bit && \
+    source ./emsdk_env.sh
+RUN chmod -R 0755 /opt/emsdk
+
 RUN dnf -y install --setopt=install_weak_deps=False \
       autoconf libtool automake cmake gettext && \
     git clone -b 'mono-6.12.0.182' --single-branch --progress --depth 1 'https://github.com/mono/mono' && \
@@ -45,15 +54,6 @@ RUN dnf -y install --setopt=install_weak_deps=False \
 #     dnf -y update && \
 #     dnf -y install mono-complete
 RUN chmod -R 0755 /opt/mono
-
-# install web build tool
-RUN cd /opt && git clone https://github.com/emscripten-core/emsdk.git && \
-    cd emsdk && \
-    git pull && \
-    ./emsdk install sdk-1.39.20-64bit && \
-    ./emsdk activate sdk-1.39.20-64bit && \
-    source ./emsdk_env.sh
-RUN chmod -R 0755 /opt/emsdk
 
 COPY mono-windows/ /opt/mono-windows
 RUN chmod -R 0755 /opt/mono-windows
