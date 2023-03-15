@@ -28,7 +28,7 @@ RUN dnf -y install --setopt=install_weak_deps=False \
     cd mono-$VERSION && \
     ./configure --prefix=$PREFIX && \
     make && \
-    make install &&
+    make install && \
     rpm -ivh --nodeps && \
       https://download.mono-project.com/repo/centos8-preview/m/msbuild/msbuild-16.10.1+xamarinxplat.2021.05.26.14.00-0.xamarin.7.epel8.noarch.rpm \
       https://download.mono-project.com/repo/centos8-preview/m/msbuild/msbuild-sdkresolver-16.10.1+xamarinxplat.2021.05.26.14.00-0.xamarin.7.epel8.noarch.rpm \
