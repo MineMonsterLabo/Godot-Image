@@ -27,7 +27,6 @@ RUN rpm -ivh --nodeps \
 
 RUN dnf -y install --setopt=install_weak_deps=False \
       autoconf libtool automake cmake gettext && \
-    export MONO_SOURCE_ROOT=/root/mono && \
     git clone -b 'mono-6.12.0.182' --single-branch --progress --depth 1 'https://github.com/mono/mono' && \
     cd mono && \
     git submodule update --init --recursive --recommend-shallow -j 6 --progress && \
@@ -37,7 +36,7 @@ RUN dnf -y install --setopt=install_weak_deps=False \
     cd godot-mono-builds && \
     git checkout 8767196960fb884ae95f337ee10cb131ae720086 && \
     export MONO_SOURCE_ROOT=${mono_root} && \
-    python3 patch_mono.py && \
+    python3 patch_mono.py --mono-sources /root/mono && \
     python3 linux.py configure --target=x86_64 && \
     python3 linux.py make --target=x86_64 && \
     python3 patch_emscripten.py && \
