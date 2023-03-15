@@ -27,7 +27,8 @@ RUN rpm -ivh --nodeps \
 
 RUN dnf -y install --setopt=install_weak_deps=False \
       autoconf libtool automake cmake gettext && \
-    git clone -b '6.12.0.182' --single-branch --progress --depth 1 'https://github.com/mono/mono' && \
+    export MONO_SOURCE_ROOT=/root/mono && \
+    git clone -b 'mono-6.12.0.182' --single-branch --progress --depth 1 'https://github.com/mono/mono' && \
     git submodule update --init --recursive --recommend-shallow -j 6 --progress && \
     PREFIX=/opt/mono && \
     cd mono && \
