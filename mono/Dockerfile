@@ -31,17 +31,15 @@ RUN dnf -y install --setopt=install_weak_deps=False \
     cd mono && \
     git submodule update --init --recursive --recommend-shallow -j 6 --progress && \
     cd ../ && \
-    export PREFIX=/opt/mono && \
     git clone --progress https://github.com/godotengine/godot-mono-builds && \
     cd godot-mono-builds && \
     git checkout 8767196960fb884ae95f337ee10cb131ae720086 && \
-    export MONO_SOURCE_ROOT=${mono_root} && \
     python3 patch_mono.py --mono-sources /root/mono && \
-    python3 linux.py configure --target=x86_64 && \
-    python3 linux.py make --target=x86_64 && \
-    python3 patch_emscripten.py && \
-    python3 wasm.py configure --target=runtime && \
-    python3 wasm.py make --target=runtime
+    python3 linux.py configure --target=x86_64 --mono-sources /root/mono && \
+    python3 linux.py make --target=x86_64 --mono-sources /root/mono && \
+    python3 patch_emscripten.py --mono-sources /root/mono && \
+    python3 wasm.py configure --target=runtime --mono-sources /root/mono && \
+    python3 wasm.py make --target=runtime --mono-sources /root/mono
 # RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" && \
 #     su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo' && \
 #     dnf -y update && \
