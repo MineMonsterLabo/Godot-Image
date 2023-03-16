@@ -36,7 +36,11 @@ RUN rpm -ivh --nodeps \
       https://download.mono-project.com/repo/centos8-preview/m/msbuild-libhostfxr/msbuild-libhostfxr-3.0.0.2019.04.16.02.13-0.xamarin.4.epel8.x86_64.rpm \
       https://download.mono-project.com/repo/centos8-preview/n/nuget/nuget-5.6.0.6489.bin-0.xamarin.1.epel8.noarch.rpm
 
-RUN curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/linux-x86_64.zip && \
+RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" && \
+    su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo' && \
+    dnf update && \
+    dnf -y install --setopt=install_weak_deps=False mono-complete && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/linux-x86_64.zip && \
     curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/wasm-runtime-threads.zip && \
     curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/windows-x86_64.zip && \
     curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/bcl-desktop.zip && \
