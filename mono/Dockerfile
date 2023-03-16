@@ -33,7 +33,7 @@ RUN cd /opt && git clone https://github.com/emscripten-core/emsdk.git && \
     ./emsdk install sdk-1.39.20-64bit && \
     ./emsdk activate sdk-1.39.20-64bit && \
     source ./emsdk_env.sh
-RUN touch .emscripten && echo 'EMSCRIPTEN_ROOT = /opt/emsdk/emscripten/1.39.20' >> .emscripten && chmod 0777 .emscripten
+RUN cp /opt/emsdk/.emscripten .emscripten && chmod 0777 .emscripten
 RUN chmod -R 0777 /opt/emsdk
 
 RUN dnf -y install --setopt=install_weak_deps=False \
