@@ -40,11 +40,11 @@ RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0
     su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo' && \
     dnf update && \
     dnf -y install --setopt=install_weak_deps=False mono-complete && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/linux-x86_64.zip && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/wasm-runtime-threads.zip && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/windows-x86_64.zip && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/bcl-desktop.zip && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/bcl-wasm.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/linux-x86_64.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/wasm-runtime-threads.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/windows-x86_64.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/bcl-desktop.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/bcl-wasm.zip && \
     mkdir /opt/mono && mkdir mono-bcl && \
     unzip -d /opt/mono/linux-x86_64 linux-x86_64.zip && \
     unzip -d /opt/mono/windows-x86_64 windows-x86_64.zip && \
