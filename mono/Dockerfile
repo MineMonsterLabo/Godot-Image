@@ -32,7 +32,7 @@ RUN cd /opt && git clone https://github.com/emscripten-core/emsdk.git && \
     ./emsdk install sdk-1.39.20-64bit && \
     ./emsdk activate sdk-1.39.20-64bit && \
     source ./emsdk_env.sh
-RUN chmod -R 0755 /opt/emsdk
+RUN chmod -R 0777 /opt/emsdk
 
 RUN dnf -y install --setopt=install_weak_deps=False \
       autoconf libtool automake cmake gettext && \
@@ -53,10 +53,10 @@ RUN dnf -y install --setopt=install_weak_deps=False \
 #     su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo' && \
 #     dnf -y update && \
 #     dnf -y install mono-complete
-RUN chmod -R 0755 /opt/mono
+# RUN chmod -R 0777 /opt/mono
 
 COPY mono-windows/ /opt/mono-windows
-RUN chmod -R 0755 /opt/mono-windows
+RUN chmod -R 0777 /opt/mono-windows
 
 USER root
 RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 90 && \
