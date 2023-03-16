@@ -48,7 +48,7 @@ RUN dnf -y install --setopt=install_weak_deps=False \
     python3 patch_mono.py --mono-sources /root/mono && \
     python3 linux.py configure --target=x86_64 --mono-sources /root/mono && \
     python3 linux.py make --target=x86_64 --mono-sources /root/mono && \
-    python3 patch_emscripten.py --mono-sources /root/mono && \
+    python patch_emscripten.py --mono-sources /root/mono && \
     python3 wasm.py configure --target=runtime --mono-sources /root/mono && \
     python3 wasm.py make --target=runtime --mono-sources /root/mono
 # RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" && \
