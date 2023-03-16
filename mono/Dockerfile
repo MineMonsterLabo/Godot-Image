@@ -40,28 +40,30 @@ RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0
     su -c 'curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo' && \
     dnf update && \
     dnf -y install --setopt=install_weak_deps=False mono-complete && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/linux-x86_64.zip && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/wasm-runtime-threads.zip && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/windows-x86_64.zip && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/bcl-desktop.zip && \
-    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-bda87f2/bcl-wasm.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/linux-x86_64.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/wasm-runtime-threads.zip && \
+#     curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/windows-x86_64.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/bcl-desktop.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/bcl-wasm.zip && \
     mkdir /opt/mono && mkdir mono-bcl && \
     unzip -d /opt/mono/linux-x86_64 linux-x86_64.zip && \
-    unzip -d /opt/mono/windows-x86_64 windows-x86_64.zip && \
+#     unzip -d /opt/mono/windows-x86_64 windows-x86_64.zip && \
     unzip -d /opt/mono/wasm-runtime-threads wasm-runtime-threads.zip && \
     unzip -d mono-bcl/bcl-desktop bcl-desktop.zip && \
     unzip -d mono-bcl/bcl-wasm bcl-wasm.zip && \
     mkdir -p /opt/mono/linux-x86_64/desktop-linux-x86_64-release/lib/mono && \
-    mkdir -p /opt/mono/windows-x86_64/desktop-windows-x86_64-release/lib/mono && \
+#    mkdir -p /opt/mono/windows-x86_64/desktop-windows-x86_64-release/lib/mono && \
     mkdir -p /opt/mono/wasm-runtime-threads/wasm-runtime-threads-release/lib/mono && \
     mv -f mono-bcl/bcl-desktop/desktop-bcl/net_4_x /opt/mono/linux-x86_64/desktop-linux-x86_64-release/lib/mono/4.5 && \
-    cp -rf /opt/mono/linux-x86_64/desktop-linux-x86_64-release/lib/mono/4.5 /opt/mono/windows-x86_64/desktop-windows-x86_64-release/lib/mono/ && \
+#    cp -rf /opt/mono/linux-x86_64/desktop-linux-x86_64-release/lib/mono/4.5 /opt/mono/windows-x86_64/desktop-windows-x86_64-release/lib/mono/ && \
     mv -f mono-bcl/bcl-wasm/wasm-bcl/wasm /opt/mono/wasm-runtime-threads/wasm-runtime-threads-release/lib/mono/wasm && \
     mv -f mono-bcl/bcl-wasm/wasm-bcl/wasm_tools /opt/mono/wasm-runtime-threads/wasm-runtime-threads-release/lib/mono/wasm_tools && \
     rm -f linux-x86_64.zip windows-x86_64.zip wasm-runtime-threads.zip bcl-desktop.zip bcl-wasm.zip && \
     rm -rf mono-bcl
 #    ln -s /opt/mono/linux-x86_64/desktop-linux-x86_64-release/bin/mono /usr/bin/mono && \
 #    mkdir -p /usr/lib/mono && ln -s /opt/mono/linux-x86_64/desktop-linux-x86_64-release/lib/mono/4.5 /usr/lib/mono/4.5
+
+COPY mono-windows/ /opt/mono/windows-x86_64/desktop-windows-x86_64-release
 
 RUN chmod -R 0777 /opt/mono
 
