@@ -41,7 +41,7 @@ RUN curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/
     curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/windows-x86_64.zip && \
     curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/bcl-desktop.zip && \
     curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/bcl-wasm.zip && \
-    mkdir /opt/mono && \
+    mkdir /opt/mono && mkdir mono-bcl && \
     unzip -d /opt/mono/linux-x86_64 linux-x86_64.zip && \
     unzip -d /opt/mono/windows-x86_64 windows-x86_64.zip && \
     unzip -d /opt/mono/wasm-runtime-threads wasm-runtime-threads.zip && \
