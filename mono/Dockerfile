@@ -1,5 +1,6 @@
 FROM fedora:37
 
+USER root
 WORKDIR /root
 
 # install base
@@ -32,6 +33,7 @@ RUN cd /opt && git clone https://github.com/emscripten-core/emsdk.git && \
     ./emsdk install sdk-1.39.20-64bit && \
     ./emsdk activate sdk-1.39.20-64bit && \
     source ./emsdk_env.sh
+RUN touch .emscripten && chmod 0777 .emscripten
 RUN chmod -R 0777 /opt/emsdk
 
 RUN dnf -y install --setopt=install_weak_deps=False \
@@ -58,7 +60,6 @@ RUN dnf -y install --setopt=install_weak_deps=False \
 COPY mono-windows/ /opt/mono-windows
 RUN chmod -R 0777 /opt/mono-windows
 
-USER root
 RUN update-alternatives --install /usr/bin/x86_64-w64-mingw32-gcc x86_64-w64-mingw32-gcc /usr/bin/x86_64-w64-mingw32-gcc-posix 90 && \
     update-alternatives --install /usr/bin/x86_64-w64-mingw32-g++ x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 90
 
