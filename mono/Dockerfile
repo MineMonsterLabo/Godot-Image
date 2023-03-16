@@ -55,7 +55,8 @@ RUN curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/
     mv -f mono-bcl/bcl-wasm/wasm-bcl/wasm /opt/mono/wasm-runtime-threads/wasm-runtime-threads-release/lib/mono/wasm && \
     mv -f mono-bcl/bcl-wasm/wasm-bcl/wasm_tools /opt/mono/wasm-runtime-threads/wasm-runtime-threads-release/lib/mono/wasm_tools && \
     rm -f linux-x86_64.zip windows-x86_64.zip wasm-runtime-threads.zip bcl-desktop.zip bcl-wasm.zip && \
-    rm -rf mono-bcl
+    rm -rf mono-bcl && \
+    ln -s /opt/mono/linux-x86_64/desktop-linux-x86_64-release/bin/mono /usr/bin/mono
 
 RUN chmod -R 0777 /opt/mono
 
