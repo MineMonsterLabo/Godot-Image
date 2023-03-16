@@ -36,9 +36,9 @@ RUN rpm -ivh --nodeps \
       https://download.mono-project.com/repo/centos8-preview/m/msbuild-libhostfxr/msbuild-libhostfxr-3.0.0.2019.04.16.02.13-0.xamarin.4.epel8.x86_64.rpm \
       https://download.mono-project.com/repo/centos8-preview/n/nuget/nuget-5.6.0.6489.bin-0.xamarin.1.epel8.noarch.rpm
 
-RUN curl -O https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/linux-x86_64.zip && \
-    curl -O https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/wasm-runtime-threads.zip && \
-    curl -O https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/windows-x86_64.zip && \
+RUN curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/linux-x86_64.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/wasm-runtime-threads.zip && \
+    curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/release-8767196/windows-x86_64.zip && \
     unzip -d /opt/mono/linux-x86_64 linux-x86_64.zip && \
     unzip -d /opt/mono/windows-x86_64 windows-x86_64.zip && \
     unzip -d /opt/mono/wasm-runtime-threads wasm-runtime-threads.zip
