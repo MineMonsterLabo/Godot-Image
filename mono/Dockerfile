@@ -51,7 +51,7 @@ RUN curl -OL https://github.com/godotengine/godot-mono-builds/releases/download/
     mkdir -p /opt/mono/windows-x86_64/lib/mono && \
     mkdir -p /opt/mono/windows-x86_64/lib/mono && \
     mv -f mono-bcl/bcl-desktop/desktop-bcl/net_4_x /opt/mono/linux-x86_64/lib/mono/4.5 && \
-    mv -f mono-bcl/bcl-desktop/desktop-bcl/net_4_x /opt/mono/windows-x86_64/lib/mono/4.5 && \
+    cp -rf /opt/mono/linux-x86_64/lib/mono/4.5 /opt/mono/windows-x86_64/lib/mono/ && \
     mv -f mono-bcl/bcl-wasm/wasm-bcl/wasm /opt/mono/windows-x86_64/lib/mono/wasm && \
     mv -f mono-bcl/bcl-wasm/wasm-bcl/wasm_tools /opt/mono/windows-x86_64/lib/mono/wasm_tools && \
     rm -f linux-x86_64.zip windows-x86_64.zip wasm-runtime-threads.zip bcl-desktop.zip bcl-wasm.zip && \
